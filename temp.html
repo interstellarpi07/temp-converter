@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <input type="number" id="temperature" placeholder="Enter temperature">
+        <select id="unit">
+            <option value="C">Celsius</option>
+            <option value="F">Fahrenheit</option>
+        </select>
+        <button onclick="convertTemperature()">Convert</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            const temp = parseFloat(document.getElementById("temperature").value);
+            const unit = document.getElementById("unit").value;
+            const result = document.getElementById("result");
+
+            if (isNaN(temp)) {
+                result.textContent = "Please enter a valid temperature.";
+                return;
+            }
+
+            if (unit === "C") {
+                const converted = (temp * 9 / 5) + 32;
+                result.textContent = `${temp}°C is ${converted.toFixed(2)}°F`;
+            } else if (unit === "F") {
+                const converted = (temp - 32) * 5 / 9;
+                result.textContent = `${temp}°F is ${converted.toFixed(2)}°C`;
+            } else {
+                result.textContent = "Invalid unit selected.";
+            }
+        }
+    </script>
+</body>
+</html>
